@@ -1,0 +1,33 @@
+{
+  "name": "Acount",
+  "fields": [
+    {
+      "fieldName": "acountID",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "credit",
+      "fieldType": "Integer"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "client",
+      "otherEntityRelationshipName": "acount",
+      "relationshipName": "client",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20200930152445",
+  "entityTableName": "acount",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

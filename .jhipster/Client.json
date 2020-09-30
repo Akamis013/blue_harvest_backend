@@ -1,0 +1,44 @@
+{
+  "name": "Client",
+  "fields": [
+    {
+      "fieldName": "customerID",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "surname",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "balance",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "initialcredit",
+      "fieldType": "Integer"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "acount",
+      "otherEntityRelationshipName": "client",
+      "relationshipName": "acount"
+    }
+  ],
+  "changelogDate": "20200930152545",
+  "entityTableName": "client",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}
