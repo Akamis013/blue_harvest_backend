@@ -7,8 +7,6 @@ import { Observable } from 'rxjs';
 
 import { IAcount, Acount } from 'app/shared/model/acount.model';
 import { AcountService } from './acount.service';
-import { IClient } from 'app/shared/model/client.model';
-import { ClientService } from 'app/entities/client/client.service';
 
 @Component({
   selector: 'jhi-acount-update',
@@ -16,27 +14,18 @@ import { ClientService } from 'app/entities/client/client.service';
 })
 export class AcountUpdateComponent implements OnInit {
   isSaving = false;
-  clients: IClient[] = [];
 
   editForm = this.fb.group({
     id: [],
     acountID: [],
     credit: [],
-    client: [],
   });
 
-  constructor(
-    protected acountService: AcountService,
-    protected clientService: ClientService,
-    protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
-  ) {}
+  constructor(protected acountService: AcountService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ acount }) => {
       this.updateForm(acount);
-
-      this.clientService.query().subscribe((res: HttpResponse<IClient[]>) => (this.clients = res.body || []));
     });
   }
 
@@ -45,7 +34,6 @@ export class AcountUpdateComponent implements OnInit {
       id: acount.id,
       acountID: acount.acountID,
       credit: acount.credit,
-      client: acount.client,
     });
   }
 
@@ -69,7 +57,6 @@ export class AcountUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       acountID: this.editForm.get(['acountID'])!.value,
       credit: this.editForm.get(['credit'])!.value,
-      client: this.editForm.get(['client'])!.value,
     };
   }
 
@@ -87,9 +74,5 @@ export class AcountUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
-  }
-
-  trackById(index: number, item: IClient): any {
-    return item.id;
   }
 }

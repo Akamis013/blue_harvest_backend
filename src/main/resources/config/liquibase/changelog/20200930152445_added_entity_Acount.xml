@@ -22,9 +22,6 @@
             <column name="credit" type="integer">
                 <constraints nullable="true" />
             </column>
-            <column name="client_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
     </changeSet>

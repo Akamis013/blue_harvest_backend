@@ -1,120 +1,56 @@
 # blue_harvest_backend
 
-This application was generated using JHipster 6.10.3, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v6.10.3](https://www.jhipster.tech/documentation-archive/v6.10.3).
+Hello and welcome to my application . This application is based on several technologies and languages who will be explained across this file .
 
-## Development
+## What do you need to compile this project ?
+
+Actually , you only need to download WAMPSERVER on this link:
+
+https://www.wampserver.com/en/download-wampserver-64bits/
+
+WAMPSERVER will install a Mysql server on your computer and also phpmyadmin to facilitiate your interaction with your database.
+
+## How does it work ?
+
+This project is composed on two major parts :
+
+### The front-end
+
+The front-end is based in the frontend folder , they are actually an `index.html` which will display the necessary information and a `script.js` file which will contain the main algorithm to make direct calls to API.
+
+### The Jhipster Application
+
+Jhipster is an open source library to create modern web application and microservice architectures . Find below the architecture for Jhipster in the case of a society :
+
+![Architecture](pictures\microservices_architecture_2.png)
+
+In our case ,we will only consider the gateway part .
 
 Before you can build this project, you must install and configure the following dependencies on your machine:
-
-1. [Node.js][]: We use Node to run a development web server and build the project.
-   Depending on your system, you can install Node either from source or as a pre-packaged bundle.
-
-After installing Node, you should be able to run the following command to install development tools.
-You will only need to run this command when dependencies change in [package.json](package.json).
 
 ```
 npm install
 ```
 
-We use npm scripts and [Webpack][] as our build system.
+It will install the necessary library (with the package.json file) to compile our Jhipster program
 
-Run the following commands in two separate terminals to create a blissful development experience where your browser
-auto-refreshes when files change on your hard drive.
-
-```
-
-./mvnw
-
-
-npm start
-```
-
-Npm is also used to manage CSS and JavaScript dependencies used in this application. You can upgrade dependencies by
-specifying a newer version in [package.json](package.json). You can also run `npm update` and `npm install` to manage dependencies.
-Add the `help` flag on any command to see how you can use it. For example, `npm help update`.
-
-The `npm run` command will list all of the scripts available to run for this project.
-
-### PWA Support
-
-JHipster ships with PWA (Progressive Web App) support, and it's turned off by default. One of the main components of a PWA is a service worker.
-
-The service worker initialization code is commented out by default. To enable it, uncomment the following code in `src/main/webapp/index.html`:
-
-```html
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./service-worker.js').then(function () {
-      console.log('Service Worker Registered');
-    });
-  }
-</script>
-```
-
-Note: [Workbox](https://developers.google.com/web/tools/workbox/) powers JHipster's service worker. It dynamically generates the `service-worker.js` file.
-
-### Managing dependencies
-
-For example, to add [Leaflet][] library as a runtime dependency of your application, you would run following command:
+Then run these command below to compile it
 
 ```
-npm install --save --save-exact leaflet
+./mvnw (in case you are on Linux/Mac device)
+mvnw (in case you are on a windows device)
 ```
 
-To benefit from TypeScript type definitions from [DefinitelyTyped][] repository in development, you would run following command:
+If you have some errors with this , just make those two commands :
 
 ```
-npm install --save-dev --save-exact @types/leaflet
+mvnw clean
+mvnw
 ```
 
-Then you would import the JS and CSS files specified in library's installation instructions so that [Webpack][] knows about them:
-Edit [src/main/webapp/app/vendor.ts](src/main/webapp/app/vendor.ts) file:
+It will reset the necessary files to compile correctly this project
 
-```
-import 'leaflet/dist/leaflet.js';
-```
-
-Edit [src/main/webapp/content/scss/vendor.scss](src/main/webapp/content/scss/vendor.scss) file:
-
-```
-@import '~leaflet/dist/leaflet.css';
-```
-
-Note: There are still a few other things remaining to do for Leaflet that we won't detail here.
-
-For further instructions on how to develop with JHipster, have a look at [Using JHipster in development][].
-
-### Using Angular CLI
-
-You can also use [Angular CLI][] to generate some custom client code.
-
-For example, the following command:
-
-```
-ng generate component my-component
-```
-
-will generate few files:
-
-```
-create src/main/webapp/app/my-component/my-component.component.html
-create src/main/webapp/app/my-component/my-component.component.ts
-update src/main/webapp/app/app.module.ts
-```
-
-### Doing API-First development using openapi-generator
-
-[OpenAPI-Generator]() is configured for this application. You can generate API code from the `src/main/resources/swagger/api.yml` definition file by running:
-
-```bash
-./mvnw generate-sources
-```
-
-Then implements the generated delegate classes with `@Service` classes.
-
-To edit the `api.yml` definition file, you can use a tool such as [Swagger-Editor](). Start a local instance of the swagger-editor using docker by running: `docker-compose -f src/main/docker/swagger-editor.yml up -d`. The editor will then be reachable at [http://localhost:7742](http://localhost:7742).
-
-Refer to [Doing API-First development][] for more details.
+If that's the case , you will access to this view on your browser (http://localhost:8080/)
 
 ## Building for production
 

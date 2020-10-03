@@ -119,6 +119,56 @@ fetch("http://localhost:8080/api/clients", {
 
 
 
+fetch("http://localhost:8080/api/clients", {
+
+    // Adding method type
+    method: "GET",
+    headers: new Headers({
+
+      'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYwNDI0NTE1MX0.nEQaGyGl0hdsOtLIGcpzgueai-5W8ogxhmRL7lslaUpDp6M6KKg7Kgh2_RI4s7qoecPEsVZEpaCVTFKKE_5OFQ',
+      "Content-type": "application/json; charset=UTF-8"
+
+    }),
+
+    // Adding body or contents to send
+    body: JSON.stringify({
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        customerID: customerid,
+        // eslint-disable-next-line object-shorthand
+        initialcredit: initialCredit,
+
+    }),
+
+
+})
+
+
+
+
+fetch("http://localhost:8080/api/clients", {
+
+    // Adding method type
+    method: "POST",
+    headers: new Headers({
+
+      'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYwNDI0NTE1MX0.nEQaGyGl0hdsOtLIGcpzgueai-5W8ogxhmRL7lslaUpDp6M6KKg7Kgh2_RI4s7qoecPEsVZEpaCVTFKKE_5OFQ',
+      "Content-type": "application/json; charset=UTF-8"
+
+    }),
+
+    // Adding body or contents to send
+    body: JSON.stringify({
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        customerID: customerid,
+        // eslint-disable-next-line object-shorthand
+        initialcredit: initialCredit,
+
+    }),
+
+
+})
+
+
 }
 
 

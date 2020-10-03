@@ -15,7 +15,5 @@ initialcredit Integer
 
 }
 
-relationship OneToMany {
-  Client{Acount} to Acount{Client}
-}
+
 

@@ -16,12 +16,6 @@
                 <dd>
                     <span>{{ acount.credit }}</span>
                 </dd>
-                <dt><span>Client</span></dt>
-                <dd>
-                    <div *ngIf="acount.client">
-                        <a [routerLink]="['/client', acount.client?.id, 'view']">{{ acount.client?.id }}</a>
-                    </div>
-                </dd>
             </dl>
 
             <button type="submit"

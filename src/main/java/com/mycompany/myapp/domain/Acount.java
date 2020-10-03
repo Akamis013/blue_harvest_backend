@@ -1,6 +1,5 @@
 package com.mycompany.myapp.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
@@ -26,10 +25,6 @@ public class Acount implements Serializable {
 
     @Column(name = "credit")
     private Integer credit;
-
-    @ManyToOne
-    @JsonIgnoreProperties(value = "acounts", allowSetters = true)
-    private Client client;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -64,19 +59,6 @@ public class Acount implements Serializable {
 
     public void setCredit(Integer credit) {
         this.credit = credit;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public Acount client(Client client) {
-        this.client = client;
-        return this;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
