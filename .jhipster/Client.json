@@ -22,7 +22,14 @@
       "fieldType": "Integer"
     }
   ],
-  "relationships": [],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "acount",
+      "otherEntityRelationshipName": "client",
+      "relationshipName": "acount"
+    }
+  ],
   "changelogDate": "20200930152545",
   "entityTableName": "client",
   "dto": "no",

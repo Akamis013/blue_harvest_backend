@@ -1,26 +1,16 @@
 <div class="row justify-content-center">
     <div class="col-8">
-        <div *ngIf="acount">
-            <h2><span>Acount</span> {{ acount.id }}</h2>
+        <div *ngIf="transactions">
+            <h2><span>Transactions</span> {{ transactions.id }}</h2>
 
             <hr>
 
             <jhi-alert-error></jhi-alert-error>
 
             <dl class="row-md jh-entity-details">
-                <dt><span>Acount ID</span></dt>
+                <dt><span>Value</span></dt>
                 <dd>
-                    <span>{{ acount.acountID }}</span>
-                </dd>
-                <dt><span>Credit</span></dt>
-                <dd>
-                    <span>{{ acount.credit }}</span>
-                </dd>
-                <dt><span>Client</span></dt>
-                <dd>
-                    <div *ngIf="acount.client">
-                        <a [routerLink]="['/client', acount.client?.id, 'view']">{{ acount.client?.customerID }}</a>
-                    </div>
+                    <span>{{ transactions.value }}</span>
                 </dd>
             </dl>
 
@@ -31,7 +21,7 @@
             </button>
 
             <button type="button"
-                    [routerLink]="['/acount', acount.id, 'edit']"
+                    [routerLink]="['/transactions', transactions.id, 'edit']"
                     class="btn btn-primary">
                 <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
             </button>

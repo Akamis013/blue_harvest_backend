@@ -5,6 +5,8 @@ import javax.persistence.*;
 
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A Client.
@@ -34,6 +36,9 @@ public class Client implements Serializable {
 
     @Column(name = "initialcredit")
     private Integer initialcredit;
+
+    @OneToMany(mappedBy = "client")
+    private Set<Acount> acounts = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -107,6 +112,31 @@ public class Client implements Serializable {
 
     public void setInitialcredit(Integer initialcredit) {
         this.initialcredit = initialcredit;
+    }
+
+    public Set<Acount> getAcounts() {
+        return acounts;
+    }
+
+    public Client acounts(Set<Acount> acounts) {
+        this.acounts = acounts;
+        return this;
+    }
+
+    public Client addAcount(Acount acount) {
+        this.acounts.add(acount);
+        acount.setClient(this);
+        return this;
+    }
+
+    public Client removeAcount(Acount acount) {
+        this.acounts.remove(acount);
+        acount.setClient(null);
+        return this;
+    }
+
+    public void setAcounts(Set<Acount> acounts) {
+        this.acounts = acounts;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

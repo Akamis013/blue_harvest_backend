@@ -1,0 +1,21 @@
+{
+  "name": "Transactions",
+  "fields": [
+    {
+      "fieldName": "value",
+      "fieldType": "Integer"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20201004170452",
+  "entityTableName": "transactions",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

@@ -1,3 +1,5 @@
+import { IAcount } from 'app/shared/model/acount.model';
+
 export interface IClient {
   id?: number;
   customerID?: number;
@@ -5,6 +7,7 @@ export interface IClient {
   surname?: string;
   balance?: number;
   initialcredit?: number;
+  acounts?: IAcount[];
 }
 
 export class Client implements IClient {
@@ -14,6 +17,7 @@ export class Client implements IClient {
     public name?: string,
     public surname?: string,
     public balance?: number,
-    public initialcredit?: number
+    public initialcredit?: number,
+    public acounts?: IAcount[]
   ) {}
 }

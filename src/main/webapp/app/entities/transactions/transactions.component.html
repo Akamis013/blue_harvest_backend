@@ -1,11 +1,11 @@
 <div>
     <h2 id="page-heading">
-        <span>Acounts</span>
+        <span>Transactions</span>
 
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-acount" [routerLink]="['/acount/new']">
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-transactions" [routerLink]="['/transactions/new']">
             <fa-icon icon="plus"></fa-icon>
             <span class="hidden-sm-down">
-            Create a new Acount
+            Create a new Transactions
             </span>
         </button>
     </h2>
@@ -32,48 +32,40 @@
         </div>
     </div>
 
-    <div class="alert alert-warning" id="no-result" *ngIf="acounts?.length === 0">
-        <span>No acounts found</span>
+    <div class="alert alert-warning" id="no-result" *ngIf="transactions?.length === 0">
+        <span>No transactions found</span>
     </div>
 
-    <div class="table-responsive" id="entities" *ngIf="acounts && acounts.length > 0">
+    <div class="table-responsive" id="entities" *ngIf="transactions && transactions.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr>
                     <th scope="col" ><span>ID</span></th>
-                    <th scope="col" ><span>Acount ID</span></th>
-                    <th scope="col" ><span>Credit</span></th>
-                    <th scope="col" ><span>Client</span></th>
+                    <th scope="col" ><span>Value</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let acount of acounts ;trackBy: trackId">
-                    <td><a [routerLink]="['/acount', acount.id, 'view']">{{ acount.id }}</a></td>
-                    <td>{{ acount.acountID }}</td>
-                    <td>{{ acount.credit }}</td>
-                    <td>
-                        <div *ngIf="acount.client">
-                            <a [routerLink]="['/client', acount.client?.id, 'view']" >{{ acount.client?.customerID }}</a>
-                        </div>
-                    </td>
+                <tr *ngFor="let transactions of transactions ;trackBy: trackId">
+                    <td><a [routerLink]="['/transactions', transactions.id, 'view']">{{ transactions.id }}</a></td>
+                    <td>{{ transactions.value }}</td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"
-                                    [routerLink]="['/acount', acount.id, 'view']"
+                                    [routerLink]="['/transactions', transactions.id, 'view']"
                                     class="btn btn-info btn-sm">
                                 <fa-icon icon="eye"></fa-icon>
                                 <span class="d-none d-md-inline">View</span>
                             </button>
 
                             <button type="submit"
-                                    [routerLink]="['/acount', acount.id, 'edit']"
+                                    [routerLink]="['/transactions', transactions.id, 'edit']"
                                     class="btn btn-primary btn-sm">
                                 <fa-icon icon="pencil-alt"></fa-icon>
                                 <span class="d-none d-md-inline">Edit</span>
                             </button>
 
-                            <button type="submit" (click)="delete(acount)"
+                            <button type="submit" (click)="delete(transactions)"
                                     class="btn btn-danger btn-sm">
                                 <fa-icon icon="times"></fa-icon>
                                 <span class="d-none d-md-inline">Delete</span>

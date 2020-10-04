@@ -15,5 +15,17 @@ initialcredit Integer
 
 }
 
+entity Transactions{
+
+value Integer
+
+}
+
+
+
+relationship OneToMany {
+  Client to Acount{Client(customerID)}
+}
+
 
 

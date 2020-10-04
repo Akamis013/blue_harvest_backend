@@ -10,7 +10,15 @@
       "fieldType": "Integer"
     }
   ],
-  "relationships": [],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "client",
+      "otherEntityRelationshipName": "acount",
+      "relationshipName": "client",
+      "otherEntityField": "customerID"
+    }
+  ],
   "changelogDate": "20200930152445",
   "entityTableName": "acount",
   "dto": "no",
