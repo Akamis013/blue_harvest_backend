@@ -23,7 +23,28 @@
 <button type = "Submit" onclick="createclient()">Click</button>
 </form>
 <h2>Display the new account with an identical ID from the user.</h2>
+
+
+
+
 <h2>In that case , we will show the necessary information about the transaction if initialCredit != 0</h2>
+
+<form>
+    <div>
+        <label for="name">ID of the sender account </label>
+        <input type="number" id = "sender">
+    </div>
+    <div>
+        <label for="name">ID of the recipient account</label>
+        <input type="number"  id = "receiver">
+    </div>
+    <div>
+        <label for="name">How much?</label>
+        <input type="number"  id = "value">
+    </div>
+<button type = "Submit" onclick="maketransaction()">Click</button>
+</form>
+
 <h2>Finally , we will show with the appropriate endpoint the user information (Name, Surename, Balance and the previous transaction)</h2>
 
 <div id = "user_info">

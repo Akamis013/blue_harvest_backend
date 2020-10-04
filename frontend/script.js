@@ -16,9 +16,8 @@ request.onload = () => {
 
 if (request.status === 200){
 
-console.log(JSON.parse(request.response));
-console.log(JSON.parse(request.response).length);
 
+console.log(JSON.parse(request.response));
 var htmltext = '';
 for (let i = 0; i < JSON.parse(request.response).length; i++) {
 
@@ -172,8 +171,31 @@ fetch("http://localhost:8080/api/clients", {
 }
 
 
-function sameID(){
+function maketransaction(){
+
+  const sender = document.getElementById("sender").value;
+
+
+  const receiver = document.getElementById("receiver").value;
+  const value  = document.getElementById("value").value;
 
 
 
+  const requesttransaction = new XMLHttpRequest();
+
+
+
+requesttransaction.open('GET','http://localhost:8080/api/clients',true);
+requesttransaction.setRequestHeader('Authorization','Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYwNDI0NTE1MX0.nEQaGyGl0hdsOtLIGcpzgueai-5W8ogxhmRL7lslaUpDp6M6KKg7Kgh2_RI4s7qoecPEsVZEpaCVTFKKE_5OFQ')
+requesttransaction.send();
+
+requesttransaction.onload = () => {
+
+
+
+
+console.log( "Transaction possible "+JSON.parse(requesttransaction.response)+ " Longueur:" +JSON.parse(requesttransaction.response).length );
+
+
+}
 }
