@@ -22,10 +22,8 @@ value Integer
 }
 
 
-
 relationship OneToMany {
+  Acount to Client{Acount(AcountID)}
   Client to Acount{Client(customerID)}
 }
-
-
 

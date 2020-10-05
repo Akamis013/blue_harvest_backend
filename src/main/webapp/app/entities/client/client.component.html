@@ -46,6 +46,7 @@
                     <th scope="col" ><span>Surname</span></th>
                     <th scope="col" ><span>Balance</span></th>
                     <th scope="col" ><span>Initialcredit</span></th>
+                    <th scope="col" ><span>Acount</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -57,6 +58,11 @@
                     <td>{{ client.surname }}</td>
                     <td>{{ client.balance }}</td>
                     <td>{{ client.initialcredit }}</td>
+                    <td>
+                        <div *ngIf="client.acount">
+                            <a [routerLink]="['/acount', client.acount?.id, 'view']" >{{ client.acount?.acountID }}</a>
+                        </div>
+                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

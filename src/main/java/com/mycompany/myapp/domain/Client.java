@@ -1,5 +1,6 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
@@ -39,6 +40,10 @@ public class Client implements Serializable {
 
     @OneToMany(mappedBy = "client")
     private Set<Acount> acounts = new HashSet<>();
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = "clients", allowSetters = true)
+    private Acount acount;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -137,6 +142,19 @@ public class Client implements Serializable {
 
     public void setAcounts(Set<Acount> acounts) {
         this.acounts = acounts;
+    }
+
+    public Acount getAcount() {
+        return acount;
+    }
+
+    public Client acount(Acount acount) {
+        this.acount = acount;
+        return this;
+    }
+
+    public void setAcount(Acount acount) {
+        this.acount = acount;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

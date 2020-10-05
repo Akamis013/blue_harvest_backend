@@ -12,6 +12,12 @@
   ],
   "relationships": [
     {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "client",
+      "otherEntityRelationshipName": "acount",
+      "relationshipName": "client"
+    },
+    {
       "relationshipType": "many-to-one",
       "otherEntityName": "client",
       "otherEntityRelationshipName": "acount",

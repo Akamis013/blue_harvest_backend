@@ -8,6 +8,7 @@ export interface IClient {
   balance?: number;
   initialcredit?: number;
   acounts?: IAcount[];
+  acount?: IAcount;
 }
 
 export class Client implements IClient {
@@ -18,6 +19,7 @@ export class Client implements IClient {
     public surname?: string,
     public balance?: number,
     public initialcredit?: number,
-    public acounts?: IAcount[]
+    public acounts?: IAcount[],
+    public acount?: IAcount
   ) {}
 }

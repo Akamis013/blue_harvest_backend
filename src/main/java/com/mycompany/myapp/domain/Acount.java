@@ -6,6 +6,8 @@ import javax.persistence.*;
 
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A Acount.
@@ -26,6 +28,9 @@ public class Acount implements Serializable {
 
     @Column(name = "credit")
     private Integer credit;
+
+    @OneToMany(mappedBy = "acount")
+    private Set<Client> clients = new HashSet<>();
 
     @ManyToOne
     @JsonIgnoreProperties(value = "acounts", allowSetters = true)
@@ -64,6 +69,31 @@ public class Acount implements Serializable {
 
     public void setCredit(Integer credit) {
         this.credit = credit;
+    }
+
+    public Set<Client> getClients() {
+        return clients;
+    }
+
+    public Acount clients(Set<Client> clients) {
+        this.clients = clients;
+        return this;
+    }
+
+    public Acount addClient(Client client) {
+        this.clients.add(client);
+        client.setAcount(this);
+        return this;
+    }
+
+    public Acount removeClient(Client client) {
+        this.clients.remove(client);
+        client.setAcount(null);
+        return this;
+    }
+
+    public void setClients(Set<Client> clients) {
+        this.clients = clients;
     }
 
     public Client getClient() {

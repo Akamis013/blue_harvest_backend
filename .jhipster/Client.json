@@ -28,6 +28,13 @@
       "otherEntityName": "acount",
       "otherEntityRelationshipName": "client",
       "relationshipName": "acount"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "acount",
+      "otherEntityRelationshipName": "client",
+      "relationshipName": "acount",
+      "otherEntityField": "acountID"
     }
   ],
   "changelogDate": "20200930152545",

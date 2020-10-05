@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 
 import { IClient, Client } from 'app/shared/model/client.model';
 import { ClientService } from './client.service';
+import { IAcount } from 'app/shared/model/acount.model';
+import { AcountService } from 'app/entities/acount/acount.service';
 
 @Component({
   selector: 'jhi-client-update',
@@ -14,6 +16,7 @@ import { ClientService } from './client.service';
 })
 export class ClientUpdateComponent implements OnInit {
   isSaving = false;
+  acounts: IAcount[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -22,13 +25,21 @@ export class ClientUpdateComponent implements OnInit {
     surname: [],
     balance: [],
     initialcredit: [],
+    acount: [],
   });
 
-  constructor(protected clientService: ClientService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(
+    protected clientService: ClientService,
+    protected acountService: AcountService,
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ client }) => {
       this.updateForm(client);
+
+      this.acountService.query().subscribe((res: HttpResponse<IAcount[]>) => (this.acounts = res.body || []));
     });
   }
 
@@ -40,6 +51,7 @@ export class ClientUpdateComponent implements OnInit {
       surname: client.surname,
       balance: client.balance,
       initialcredit: client.initialcredit,
+      acount: client.acount,
     });
   }
 
@@ -66,6 +78,7 @@ export class ClientUpdateComponent implements OnInit {
       surname: this.editForm.get(['surname'])!.value,
       balance: this.editForm.get(['balance'])!.value,
       initialcredit: this.editForm.get(['initialcredit'])!.value,
+      acount: this.editForm.get(['acount'])!.value,
     };
   }
 
@@ -83,5 +96,9 @@ export class ClientUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
+  }
+
+  trackById(index: number, item: IAcount): any {
+    return item.id;
   }
 }

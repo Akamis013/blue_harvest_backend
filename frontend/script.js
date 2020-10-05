@@ -1,6 +1,7 @@
 
 
 /* eslint-disable no-console */
+
 const request = new XMLHttpRequest();
 const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYwNDI0NTE1MX0.nEQaGyGl0hdsOtLIGcpzgueai-5W8ogxhmRL7lslaUpDp6M6KKg7Kgh2_RI4s7qoecPEsVZEpaCVTFKKE_5OFQ';
 
@@ -89,39 +90,7 @@ alert ("Client numéro " + customerid + "Credit de " + initialCredit )
 fetch("http://localhost:8080/api/clients", {
 
     // Adding method type
-    method: "POST",
-    headers: new Headers({
-
-      'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYwNDI0NTE1MX0.nEQaGyGl0hdsOtLIGcpzgueai-5W8ogxhmRL7lslaUpDp6M6KKg7Kgh2_RI4s7qoecPEsVZEpaCVTFKKE_5OFQ',
-      "Content-type": "application/json; charset=UTF-8"
-
-    }),
-
-    // Adding body or contents to send
-    body: JSON.stringify({
-        // eslint-disable-next-line @typescript-eslint/camelcase
-        customerID: customerid,
-        // eslint-disable-next-line object-shorthand
-        initialcredit: initialCredit,
-
-    }),
-
-
-})
-
-// Converting to JSON
-.then(response => response.json())
-
-// Displaying results to console
-.then(json => console.log(json));
-
-
-
-
-fetch("http://localhost:8080/api/clients", {
-
-    // Adding method type
-    method: "GET",
+    method: 'POST',
     headers: new Headers({
 
       'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYwNDI0NTE1MX0.nEQaGyGl0hdsOtLIGcpzgueai-5W8ogxhmRL7lslaUpDp6M6KKg7Kgh2_RI4s7qoecPEsVZEpaCVTFKKE_5OFQ',
@@ -144,35 +113,16 @@ fetch("http://localhost:8080/api/clients", {
 
 
 
-fetch("http://localhost:8080/api/clients", {
-
-    // Adding method type
-    method: "POST",
-    headers: new Headers({
-
-      'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYwNDI0NTE1MX0.nEQaGyGl0hdsOtLIGcpzgueai-5W8ogxhmRL7lslaUpDp6M6KKg7Kgh2_RI4s7qoecPEsVZEpaCVTFKKE_5OFQ',
-      "Content-type": "application/json; charset=UTF-8"
-
-    }),
-
-    // Adding body or contents to send
-    body: JSON.stringify({
-        // eslint-disable-next-line @typescript-eslint/camelcase
-        customerID: customerid,
-        // eslint-disable-next-line object-shorthand
-        initialcredit: initialCredit,
-
-    }),
-
-
-})
 
 
 }
 
 
 function maketransaction(){
-
+  const requesttransaction = new XMLHttpRequest();
+  const requestrecipient = new XMLHttpRequest();
+  const post1 = new XMLHttpRequest();
+  const post2 = new XMLHttpRequest();
   const sender = document.getElementById("sender").value;
 
 
@@ -181,21 +131,102 @@ function maketransaction(){
 
 
 
-  const requesttransaction = new XMLHttpRequest();
 
 
 
-requesttransaction.open('GET','http://localhost:8080/api/clients',true);
+requesttransaction.open('GET','http://localhost:8080/api/clients/'+sender,true)
+
 requesttransaction.setRequestHeader('Authorization','Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYwNDI0NTE1MX0.nEQaGyGl0hdsOtLIGcpzgueai-5W8ogxhmRL7lslaUpDp6M6KKg7Kgh2_RI4s7qoecPEsVZEpaCVTFKKE_5OFQ')
 requesttransaction.send();
+alert("La valeur est de");
 
 requesttransaction.onload = () => {
 
 
+alert(JSON.parse(requesttransaction.response).initialcredit); // Sender's InitialCredit
 
 
-console.log( "Transaction possible "+JSON.parse(requesttransaction.response)+ " Longueur:" +JSON.parse(requesttransaction.response).length );
+  const datatransaction = JSON.parse(requesttransaction.response);
+
+  requestrecipient.open('GET','http://localhost:8080/api/clients/'+receiver,true)
+  requestrecipient.setRequestHeader('Authorization','Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYwNDI0NTE1MX0.nEQaGyGl0hdsOtLIGcpzgueai-5W8ogxhmRL7lslaUpDp6M6KKg7Kgh2_RI4s7qoecPEsVZEpaCVTFKKE_5OFQ')
+  requestrecipient.send();
+  alert("La valeur est de");
+  requestrecipient.onload = () => {
+
+    alert(JSON.parse(requestrecipient))
+    if (requestrecipient.status === 200){ // Recipient's InitialCredit
+
+    if (JSON.parse(requesttransaction.response).initialcredit > value){
+
+      const temp1 = JSON.parse(requesttransaction.response).initialcredit - value;
+      alert(temp1);
+
+      fetch("http://localhost:8080/api/clients/"+receiver, {
+
+        // Adding method type
+        method: 'PATCH',
+
+        headers: new Headers({
+
+          'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYwNDI0NTE1MX0.nEQaGyGl0hdsOtLIGcpzgueai-5W8ogxhmRL7lslaUpDp6M6KKg7Kgh2_RI4s7qoecPEsVZEpaCVTFKKE_5OFQ',
+          "Content-type": "application/json; charset=UTF-8"
+
+        }),
 
 
+        body: JSON.stringify({
+
+          initialcredit: temp1,
+
+        }),
+
+
+
+    })
+
+
+
+    const temp2 = JSON.parse(requesttransaction.response).initialcredit - value;
+    fetch("http://localhost:8080/api/clients/"+sender, {
+
+        // Adding method type
+        method: 'PATCH',
+        body: JSON.stringify({
+
+          initialcredit: temp2,
+
+        }),
+        headers: new Headers({
+
+          'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYwNDI0NTE1MX0.nEQaGyGl0hdsOtLIGcpzgueai-5W8ogxhmRL7lslaUpDp6M6KKg7Kgh2_RI4s7qoecPEsVZEpaCVTFKKE_5OFQ',
+          "Content-type": "application/json; charset=UTF-8"
+
+        }),
+
+
+
+
+
+
+    })
+
+
+
+
+
+    }
+
+else{
+
+console.error("You have not enough money to make this transaction")
+
+}
+
+
+  }
+
+
+}
 }
 }
