@@ -67,6 +67,7 @@ Unfortunatly for some reasons , some functionnalities could not be implemented i
 <ol>
 <li> Concerning the transaction service , this could not be done because the PATCH request is not yet implemented in Jhipster . But I saw (https://github.com/jhipster/generator-jhipster/pull/12507) this is a futur improvement who could be implement in the next few days</li>
 <li>Maybe it would be better to implement the relationships between entities by myself. Indeed , some validation rules may not be correctly implemented</li>
+<li>Make more improvements about the front end</li>
 
 </ol>
 </br>
