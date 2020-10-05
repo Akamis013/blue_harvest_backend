@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="script.js"></script>
-    <title>Blue Harvest BackEnd</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="script.js"></script>
+<title>Blue Harvest BackEnd</title>
 </head>
 <body>
 
@@ -12,17 +12,16 @@
 
 <h2>Create a new client </h2>
 <form>
-    <div>
-        <label for="name">CustomerID</label>
-        <input type="number" name="CustomerID" id = "CustomerID">
-    </div>
-    <div>
-        <label for="name">initialCredit</label>
-        <input type="number" name="InitialCredit" id = "InitialCredit">
-    </div>
+<div>
+    <label for="name">CustomerID</label>
+    <input type="number" name="CustomerID" id = "CustomerID">
+</div>
+<div>
+    <label for="name">initialCredit</label>
+    <input type="number" name="InitialCredit" id = "InitialCredit">
+</div>
 <button type = "Submit" onclick="createclient()">Click</button>
 </form>
-<h2>Display the new account with an identical ID from the user.</h2>
 
 
 
@@ -30,18 +29,18 @@
 <h2>In that case , we will show the necessary information about the transaction if initialCredit != 0</h2>
 
 <form>
-    <div>
-        <label for="name">ID of the sender account </label>
-        <input type="number" id = "sender">
-    </div>
-    <div>
-        <label for="name">ID of the recipient account</label>
-        <input type="number"  id = "receiver">
-    </div>
-    <div>
-        <label for="name">How much?</label>
-        <input type="number"  id = "value">
-    </div>
+<div>
+    <label for="name">ID of the sender account </label>
+    <input type="number" id = "sender">
+</div>
+<div>
+    <label for="name">ID of the recipient account</label>
+    <input type="number"  id = "receiver">
+</div>
+<div>
+    <label for="name">How much?</label>
+    <input type="number"  id = "value">
+</div>
 <button type = "Submit" onclick="maketransaction()">Click</button>
 </form>
 

@@ -8,7 +8,7 @@ Actually , you only need to download WAMPSERVER on this link:
 
 https://www.wampserver.com/en/download-wampserver-64bits/
 
-WAMPSERVER will install a Mysql server on your computer and also phpmyadmin to facilitiate your interaction with your database.
+WAMPSERVER will install a developpement Mysql server on your computer and also phpmyadmin to facilitiate your interaction with your database.
 
 ## How does it work ?
 
@@ -55,3 +55,29 @@ If that's the case , you will access to this view on your browser (http://localh
 ![Exemple](pictures\screenshot_1.png)
 
 Sign in with the necessary information (login = "admin" password = "admin") and you will get an access to a lot of data such as performance data and also entities who are in your database
+</br>
+</br>
+</br>
+
+## Future Improvements ?
+
+</br>
+Unfortunatly for some reasons , some functionnalities could not be implemented in this project , here are the main ones :
+
+<ol>
+<li> Concerning the transaction service , this could not be done because the PATCH request is not yet implemented in Jhipster . But I saw (https://github.com/jhipster/generator-jhipster/pull/12507) this is a futur improvement who could be implement in the next few days</li>
+<li>Maybe it would be better to implement the relationships between entities by myself. Indeed , some validation rules may not be correctly implemented</li>
+
+</ol>
+</br>
+</br>
+
+## Technology used
+
+<ul>
+<li>JAVA  </li>
+<li>HTML</li>
+<li>Javascript</li>
+<li>Maven</li>
+
+</ul>

@@ -22,12 +22,12 @@ console.log(JSON.parse(request.response));
 var htmltext = '';
 for (let i = 0; i < JSON.parse(request.response).length; i++) {
 
-  var data = JSON.parse(request.response);
-  /*
-  console.log(i);
-  console.log(JSON.parse(request.response)[i]);
-  var user_info = document.getElementById("user_info");
-  user_info.innerHTML = 'Account number :' +data[i].id+ '<br> Name : '+data[i].name + '<br> Surname : ' + data[i].surname + ' <br> Balance :' + data[i].balance + ' <br> Previous transactions :(à voir) '
+var data = JSON.parse(request.response);
+/*
+console.log(i);
+console.log(JSON.parse(request.response)[i]);
+var user_info = document.getElementById("user_info");
+user_info.innerHTML = 'Account number :' +data[i].id+ '<br> Name : '+data[i].name + '<br> Surname : ' + data[i].surname + ' <br> Balance :' + data[i].balance + ' <br> Previous transactions :(à voir) '
 */
 
 htmltext+= '<p> Account Number : '+data[i].id+'<br>' + 'Name : '+ data[i].name + ' <br> Surname : '+ data[i].surname + '<br> Balance : ' + data[i].balance + '<br> Previous transactions :' + JSON.stringify(data[i].transactions) + '<br></p>'
@@ -55,58 +55,69 @@ console.log('Error');
 
 
 function createclient(){
-/*
-  const request = new XMLHttpRequest();
-  const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYwNDI0NTE1MX0.nEQaGyGl0hdsOtLIGcpzgueai-5W8ogxhmRL7lslaUpDp6M6KKg7Kgh2_RI4s7qoecPEsVZEpaCVTFKKE_5OFQ';
-  let customerid = document.getElementById("CustomerID").value;
 
-
-  let initialCredit = document.getElementById("InitialCredit").value;
-
-
-
-  request.open('POST','http://localhost:8080/api/clients',true);
-  request.setRequestHeader('Authorization','Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYwNDI0NTE1MX0.nEQaGyGl0hdsOtLIGcpzgueai-5W8ogxhmRL7lslaUpDp6M6KKg7Kgh2_RI4s7qoecPEsVZEpaCVTFKKE_5OFQ')
-  //request.send(JSON.stringify("customer_id:" + customerid + "name : " +"surname"+"balance" + "InitialCredit"+ initialCredit));
-  const data = {element : customerid}
-  request.send(JSON.stringify(data));
-
-
-  //alert(JSON.stringify("CustomerID:" + customerid + " InitialCredit"+ initialCredit));
-*/
 /////////////////////////////// FETCH METHOD////////////////////////////////////
 
 
 const customerid = document.getElementById("CustomerID").value;
 
 
-  const initialCredit = document.getElementById("InitialCredit").value;
+const initialCredit = document.getElementById("InitialCredit").value;
 
-alert ("Client numéro " + customerid + "Credit de " + initialCredit )
+
+
+
+fetch("http://localhost:8080/api/acounts", {
+
+  // Adding method type
+  method: 'POST',
+  headers: new Headers({
+
+    'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYwNDI0NTE1MX0.nEQaGyGl0hdsOtLIGcpzgueai-5W8ogxhmRL7lslaUpDp6M6KKg7Kgh2_RI4s7qoecPEsVZEpaCVTFKKE_5OFQ',
+    "Content-type": "application/json; charset=UTF-8"
+
+  }),
+
+  // Adding body or contents to send
+  body: JSON.stringify({
+      // eslint-disable-next-line @typescript-eslint/camelcase
+      accountID: customerid,
+      // eslint-disable-next-line object-shorthand
+      credit: initialCredit,
+
+  }),
+
+
+
+
+
+})
+
 
 // POST request using fetch()
 fetch("http://localhost:8080/api/clients", {
 
-    // Adding method type
-    method: 'POST',
-    headers: new Headers({
+  // Adding method type
+  method: 'POST',
+  headers: new Headers({
 
-      'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYwNDI0NTE1MX0.nEQaGyGl0hdsOtLIGcpzgueai-5W8ogxhmRL7lslaUpDp6M6KKg7Kgh2_RI4s7qoecPEsVZEpaCVTFKKE_5OFQ',
-      "Content-type": "application/json; charset=UTF-8"
+    'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYwNDI0NTE1MX0.nEQaGyGl0hdsOtLIGcpzgueai-5W8ogxhmRL7lslaUpDp6M6KKg7Kgh2_RI4s7qoecPEsVZEpaCVTFKKE_5OFQ',
+    "Content-type": "application/json; charset=UTF-8"
 
-    }),
+  }),
 
-    // Adding body or contents to send
-    body: JSON.stringify({
-        // eslint-disable-next-line @typescript-eslint/camelcase
-        customerID: customerid,
-        // eslint-disable-next-line object-shorthand
-        initialcredit: initialCredit,
+  // Adding body or contents to send
+  body: JSON.stringify({
+      // eslint-disable-next-line @typescript-eslint/camelcase
+      customerID: customerid,
+      // eslint-disable-next-line object-shorthand
+      initialcredit: initialCredit,
 
-    }),
+  }),
 
 
 })
+
 
 
 
@@ -117,15 +128,15 @@ fetch("http://localhost:8080/api/clients", {
 
 
 function maketransaction(){
-  const requesttransaction = new XMLHttpRequest();
-  const requestrecipient = new XMLHttpRequest();
-  const post1 = new XMLHttpRequest();
-  const post2 = new XMLHttpRequest();
-  const sender = document.getElementById("sender").value;
+const requesttransaction = new XMLHttpRequest();
+const requestrecipient = new XMLHttpRequest();
+const post1 = new XMLHttpRequest();
+const post2 = new XMLHttpRequest();
+const sender = document.getElementById("sender").value;
 
 
-  const receiver = document.getElementById("receiver").value;
-  const value  = document.getElementById("value").value;
+const receiver = document.getElementById("receiver").value;
+const value  = document.getElementById("value").value;
 
 
 
@@ -136,84 +147,80 @@ requesttransaction.open('GET','http://localhost:8080/api/clients/'+sender,true)
 
 requesttransaction.setRequestHeader('Authorization','Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYwNDI0NTE1MX0.nEQaGyGl0hdsOtLIGcpzgueai-5W8ogxhmRL7lslaUpDp6M6KKg7Kgh2_RI4s7qoecPEsVZEpaCVTFKKE_5OFQ')
 requesttransaction.send();
-alert("La valeur est de");
+
 
 requesttransaction.onload = () => {
 
 
-alert(JSON.parse(requesttransaction.response).initialcredit); // Sender's InitialCredit
 
 
-  const datatransaction = JSON.parse(requesttransaction.response);
+const datatransaction = JSON.parse(requesttransaction.response);
 
-  requestrecipient.open('GET','http://localhost:8080/api/clients/'+receiver,true)
-  requestrecipient.setRequestHeader('Authorization','Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYwNDI0NTE1MX0.nEQaGyGl0hdsOtLIGcpzgueai-5W8ogxhmRL7lslaUpDp6M6KKg7Kgh2_RI4s7qoecPEsVZEpaCVTFKKE_5OFQ')
-  requestrecipient.send();
-  alert("La valeur est de");
-  requestrecipient.onload = () => {
+requestrecipient.open('GET','http://localhost:8080/api/clients/'+receiver,true)
+requestrecipient.setRequestHeader('Authorization','Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYwNDI0NTE1MX0.nEQaGyGl0hdsOtLIGcpzgueai-5W8ogxhmRL7lslaUpDp6M6KKg7Kgh2_RI4s7qoecPEsVZEpaCVTFKKE_5OFQ')
+requestrecipient.send();
+requestrecipient.onload = () => {
 
-    alert(JSON.parse(requestrecipient))
-    if (requestrecipient.status === 200){ // Recipient's InitialCredit
+  if (requestrecipient.status === 200){ // Recipient's InitialCredit
 
-    if (JSON.parse(requesttransaction.response).initialcredit > value){
+  if (JSON.parse(requesttransaction.response).initialcredit > value){
 
-      const temp1 = JSON.parse(requesttransaction.response).initialcredit - value;
-      alert(temp1);
+    const temp1 = JSON.parse(requesttransaction.response).initialcredit - value;
 
-      fetch("http://localhost:8080/api/clients/"+receiver, {
+    fetch("http://localhost:8080/api/clients/"+receiver, {
 
-        // Adding method type
-        method: 'PATCH',
+      // Adding method type
+      method: 'PATCH',
 
-        headers: new Headers({
+      headers: new Headers({
 
-          'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYwNDI0NTE1MX0.nEQaGyGl0hdsOtLIGcpzgueai-5W8ogxhmRL7lslaUpDp6M6KKg7Kgh2_RI4s7qoecPEsVZEpaCVTFKKE_5OFQ',
-          "Content-type": "application/json; charset=UTF-8"
+        'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYwNDI0NTE1MX0.nEQaGyGl0hdsOtLIGcpzgueai-5W8ogxhmRL7lslaUpDp6M6KKg7Kgh2_RI4s7qoecPEsVZEpaCVTFKKE_5OFQ',
+        "Content-type": "application/json; charset=UTF-8"
 
-        }),
+      }),
 
 
-        body: JSON.stringify({
+      body: JSON.stringify({
 
-          initialcredit: temp1,
+        initialcredit: temp1,
 
-        }),
+      }),
 
 
 
-    })
+  })
 
 
 
-    const temp2 = JSON.parse(requesttransaction.response).initialcredit - value;
-    fetch("http://localhost:8080/api/clients/"+sender, {
+  const temp2 = JSON.parse(requesttransaction.response).initialcredit - value;
+  fetch("http://localhost:8080/api/clients/"+sender, {
 
-        // Adding method type
-        method: 'PATCH',
-        body: JSON.stringify({
+      // Adding method type
+      method: 'PATCH',
+      body: JSON.stringify({
 
-          initialcredit: temp2,
+        initialcredit: temp2,
 
-        }),
-        headers: new Headers({
+      }),
+      headers: new Headers({
 
-          'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYwNDI0NTE1MX0.nEQaGyGl0hdsOtLIGcpzgueai-5W8ogxhmRL7lslaUpDp6M6KKg7Kgh2_RI4s7qoecPEsVZEpaCVTFKKE_5OFQ',
-          "Content-type": "application/json; charset=UTF-8"
+        'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYwNDI0NTE1MX0.nEQaGyGl0hdsOtLIGcpzgueai-5W8ogxhmRL7lslaUpDp6M6KKg7Kgh2_RI4s7qoecPEsVZEpaCVTFKKE_5OFQ',
+        "Content-type": "application/json; charset=UTF-8"
 
-        }),
+      }),
 
 
 
 
 
 
-    })
+  })
 
 
 
 
 
-    }
+  }
 
 else{
 
@@ -222,7 +229,7 @@ console.error("You have not enough money to make this transaction")
 }
 
 
-  }
+}
 
 
 }
