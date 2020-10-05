@@ -30,10 +30,8 @@ for (let i = 0; i < JSON.parse(request.response).length; i++) {
   user_info.innerHTML = 'Account number :' +data[i].id+ '<br> Name : '+data[i].name + '<br> Surname : ' + data[i].surname + ' <br> Balance :' + data[i].balance + ' <br> Previous transactions :(à voir) '
 */
 
-htmltext+= '<p> Account Number : '+data[i].id+'<br>' + 'Name : '+ data[i].name + ' <br> Surname : '+ data[i].surname + '<br> Balance : ' + data[i].balance + '<br> Previous transactions :(à voir)' + '<br></p>'
+htmltext+= '<p> Account Number : '+data[i].id+'<br>' + 'Name : '+ data[i].name + ' <br> Surname : '+ data[i].surname + '<br> Balance : ' + data[i].balance + '<br> Previous transactions :' + JSON.stringify(data[i].transactions) + '<br></p>'
 document.getElementById("user_info").innerHTML = htmltext;
-
-
 
 
 

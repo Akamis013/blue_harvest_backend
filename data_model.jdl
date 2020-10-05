@@ -27,3 +27,8 @@ relationship OneToMany {
   Client to Acount{Client(customerID)}
 }
 
+relationship ManyToMany{
+
+Client{Transactions} to Transactions{client}
+}
+

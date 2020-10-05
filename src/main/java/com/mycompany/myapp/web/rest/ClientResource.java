@@ -92,12 +92,13 @@ public class ClientResource {
     /**
      * {@code GET  /clients} : get all the clients.
      *
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of clients in body.
      */
     @GetMapping("/clients")
-    public List<Client> getAllClients() {
+    public List<Client> getAllClients(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get all Clients");
-        return clientRepository.findAll();
+        return clientRepository.findAllWithEagerRelationships();
     }
 
     /**
@@ -109,7 +110,7 @@ public class ClientResource {
     @GetMapping("/clients/{id}")
     public ResponseEntity<Client> getClient(@PathVariable Long id) {
         log.debug("REST request to get Client : {}", id);
-        Optional<Client> client = clientRepository.findById(id);
+        Optional<Client> client = clientRepository.findOneWithEagerRelationships(id);
         return ResponseUtil.wrapOrNotFound(client);
     }
 

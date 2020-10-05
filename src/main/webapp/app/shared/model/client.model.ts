@@ -1,4 +1,5 @@
 import { IAcount } from 'app/shared/model/acount.model';
+import { ITransactions } from 'app/shared/model/transactions.model';
 
 export interface IClient {
   id?: number;
@@ -8,6 +9,7 @@ export interface IClient {
   balance?: number;
   initialcredit?: number;
   acounts?: IAcount[];
+  transactions?: ITransactions[];
   acount?: IAcount;
 }
 
@@ -20,6 +22,7 @@ export class Client implements IClient {
     public balance?: number,
     public initialcredit?: number,
     public acounts?: IAcount[],
+    public transactions?: ITransactions[],
     public acount?: IAcount
   ) {}
 }

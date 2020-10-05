@@ -1,10 +1,13 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A Transactions.
@@ -22,6 +25,10 @@ public class Transactions implements Serializable {
 
     @Column(name = "value")
     private Integer value;
+
+    @ManyToMany(mappedBy = "transactions")
+    @JsonIgnore
+    private Set<Client> clients = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -43,6 +50,31 @@ public class Transactions implements Serializable {
 
     public void setValue(Integer value) {
         this.value = value;
+    }
+
+    public Set<Client> getClients() {
+        return clients;
+    }
+
+    public Transactions clients(Set<Client> clients) {
+        this.clients = clients;
+        return this;
+    }
+
+    public Transactions addClient(Client client) {
+        this.clients.add(client);
+        client.getTransactions().add(this);
+        return this;
+    }
+
+    public Transactions removeClient(Client client) {
+        this.clients.remove(client);
+        client.getTransactions().remove(this);
+        return this;
+    }
+
+    public void setClients(Set<Client> clients) {
+        this.clients = clients;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

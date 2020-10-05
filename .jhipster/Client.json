@@ -30,6 +30,14 @@
       "relationshipName": "acount"
     },
     {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "transactions",
+      "otherEntityRelationshipName": "client",
+      "relationshipName": "transactions",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
       "relationshipType": "many-to-one",
       "otherEntityName": "acount",
       "otherEntityRelationshipName": "client",

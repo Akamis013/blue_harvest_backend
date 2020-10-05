@@ -41,6 +41,12 @@ public class Client implements Serializable {
     @OneToMany(mappedBy = "client")
     private Set<Acount> acounts = new HashSet<>();
 
+    @ManyToMany
+    @JoinTable(name = "client_transactions",
+               joinColumns = @JoinColumn(name = "client_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "transactions_id", referencedColumnName = "id"))
+    private Set<Transactions> transactions = new HashSet<>();
+
     @ManyToOne
     @JsonIgnoreProperties(value = "clients", allowSetters = true)
     private Acount acount;
@@ -142,6 +148,31 @@ public class Client implements Serializable {
 
     public void setAcounts(Set<Acount> acounts) {
         this.acounts = acounts;
+    }
+
+    public Set<Transactions> getTransactions() {
+        return transactions;
+    }
+
+    public Client transactions(Set<Transactions> transactions) {
+        this.transactions = transactions;
+        return this;
+    }
+
+    public Client addTransactions(Transactions transactions) {
+        this.transactions.add(transactions);
+        transactions.getClients().add(this);
+        return this;
+    }
+
+    public Client removeTransactions(Transactions transactions) {
+        this.transactions.remove(transactions);
+        transactions.getClients().remove(this);
+        return this;
+    }
+
+    public void setTransactions(Set<Transactions> transactions) {
+        this.transactions = transactions;
     }
 
     public Acount getAcount() {

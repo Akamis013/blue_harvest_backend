@@ -42,6 +42,13 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="field_transactions">Transactions</label>
+                    <select class="form-control" id="field_transactions" multiple name="transactions" formControlName="transactions">
+                        <option [ngValue]="getSelected(editForm.get('transactions')!.value, transactionsOption)" *ngFor="let transactionsOption of transactions; trackBy: trackById">{{ transactionsOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
                     <label class="form-control-label" for="field_acount">Acount</label>
                     <select class="form-control" id="field_acount" name="acount" formControlName="acount">
                         <option [ngValue]="null"></option>

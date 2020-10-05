@@ -6,7 +6,16 @@
       "fieldType": "Integer"
     }
   ],
-  "relationships": [],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "client",
+      "otherEntityRelationshipName": "transactions",
+      "relationshipName": "client",
+      "otherEntityField": "id",
+      "ownerSide": false
+    }
+  ],
   "changelogDate": "20201004170452",
   "entityTableName": "transactions",
   "dto": "no",

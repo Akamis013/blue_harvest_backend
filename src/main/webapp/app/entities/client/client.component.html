@@ -46,6 +46,7 @@
                     <th scope="col" ><span>Surname</span></th>
                     <th scope="col" ><span>Balance</span></th>
                     <th scope="col" ><span>Initialcredit</span></th>
+                    <th scope="col" ><span>Transactions</span></th>
                     <th scope="col" ><span>Acount</span></th>
                     <th scope="col"></th>
                 </tr>
@@ -58,6 +59,11 @@
                     <td>{{ client.surname }}</td>
                     <td>{{ client.balance }}</td>
                     <td>{{ client.initialcredit }}</td>
+                    <td>
+                        <span *ngFor="let transactions of client.transactions; let last = last">
+                            <a class="form-control-static" [routerLink]="['/transactions', transactions?.id, 'view']">{{ transactions.id }}</a>{{ last ? '' : ', ' }}
+                        </span>
+                    </td>
                     <td>
                         <div *ngIf="client.acount">
                             <a [routerLink]="['/acount', client.acount?.id, 'view']" >{{ client.acount?.acountID }}</a>

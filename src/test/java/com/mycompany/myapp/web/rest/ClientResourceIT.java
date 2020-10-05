@@ -13,11 +13,14 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -54,6 +57,9 @@ public class ClientResourceIT {
 
     @Autowired
     private ClientRepository clientRepository;
+
+    @Mock
+    private ClientRepository clientRepositoryMock;
 
     /**
      * This repository is mocked in the com.mycompany.myapp.repository.search test package.
@@ -172,6 +178,26 @@ public class ClientResourceIT {
             .andExpect(jsonPath("$.[*].initialcredit").value(hasItem(DEFAULT_INITIALCREDIT)));
     }
     
+    @SuppressWarnings({"unchecked"})
+    public void getAllClientsWithEagerRelationshipsIsEnabled() throws Exception {
+        when(clientRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restClientMockMvc.perform(get("/api/clients?eagerload=true"))
+            .andExpect(status().isOk());
+
+        verify(clientRepositoryMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
+    @SuppressWarnings({"unchecked"})
+    public void getAllClientsWithEagerRelationshipsIsNotEnabled() throws Exception {
+        when(clientRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restClientMockMvc.perform(get("/api/clients?eagerload=true"))
+            .andExpect(status().isOk());
+
+        verify(clientRepositoryMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
     @Test
     @Transactional
     public void getClient() throws Exception {

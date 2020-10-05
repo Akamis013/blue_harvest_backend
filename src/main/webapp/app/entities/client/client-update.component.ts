@@ -9,6 +9,10 @@ import { IClient, Client } from 'app/shared/model/client.model';
 import { ClientService } from './client.service';
 import { IAcount } from 'app/shared/model/acount.model';
 import { AcountService } from 'app/entities/acount/acount.service';
+import { ITransactions } from 'app/shared/model/transactions.model';
+import { TransactionsService } from 'app/entities/transactions/transactions.service';
+
+type SelectableEntity = ITransactions | IAcount;
 
 @Component({
   selector: 'jhi-client-update',
@@ -16,6 +20,7 @@ import { AcountService } from 'app/entities/acount/acount.service';
 })
 export class ClientUpdateComponent implements OnInit {
   isSaving = false;
+  transactions: ITransactions[] = [];
   acounts: IAcount[] = [];
 
   editForm = this.fb.group({
@@ -25,12 +30,14 @@ export class ClientUpdateComponent implements OnInit {
     surname: [],
     balance: [],
     initialcredit: [],
+    transactions: [],
     acount: [],
   });
 
   constructor(
     protected clientService: ClientService,
     protected acountService: AcountService,
+    protected transactionsService: TransactionsService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -38,6 +45,8 @@ export class ClientUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ client }) => {
       this.updateForm(client);
+
+      this.transactionsService.query().subscribe((res: HttpResponse<ITransactions[]>) => (this.transactions = res.body || []));
 
       this.acountService.query().subscribe((res: HttpResponse<IAcount[]>) => (this.acounts = res.body || []));
     });
@@ -51,6 +60,7 @@ export class ClientUpdateComponent implements OnInit {
       surname: client.surname,
       balance: client.balance,
       initialcredit: client.initialcredit,
+      transactions: client.transactions,
       acount: client.acount,
     });
   }
@@ -78,6 +88,7 @@ export class ClientUpdateComponent implements OnInit {
       surname: this.editForm.get(['surname'])!.value,
       balance: this.editForm.get(['balance'])!.value,
       initialcredit: this.editForm.get(['initialcredit'])!.value,
+      transactions: this.editForm.get(['transactions'])!.value,
       acount: this.editForm.get(['acount'])!.value,
     };
   }
@@ -98,7 +109,18 @@ export class ClientUpdateComponent implements OnInit {
     this.isSaving = false;
   }
 
-  trackById(index: number, item: IAcount): any {
+  trackById(index: number, item: SelectableEntity): any {
     return item.id;
+  }
+
+  getSelected(selectedVals: ITransactions[], option: ITransactions): ITransactions {
+    if (selectedVals) {
+      for (let i = 0; i < selectedVals.length; i++) {
+        if (option.id === selectedVals[i].id) {
+          return selectedVals[i];
+        }
+      }
+    }
+    return option;
   }
 }
